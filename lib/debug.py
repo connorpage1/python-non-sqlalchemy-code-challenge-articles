@@ -11,6 +11,7 @@ if __name__ == '__main__':
     connor = Author("Connor")
     mag = Magazine("The Examiner", "CBT")
     test_art = Article(connor, mag, "Test Article")
+    art_2 = Article(connor, mag, "Test article")
     
     # don't remove this line, it's for debugging!
     ipdb.set_trace()

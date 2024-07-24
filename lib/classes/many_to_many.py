@@ -133,8 +133,30 @@ class Magazine:
 
     def contributing_authors(self):
         all_authors = [article.author for article in self.articles()]
-        contributing_author_list = [author for author in all_authors if all_authors.count(author) > 2]
-        if contributing_author_list:
+        if contributing_author_list := [
+            author for author in all_authors if all_authors.count(author) > 2
+            ]:
             return contributing_author_list
-        else:
-            return None
+        
+        return None
+    
+    @classmethod
+    def top_publisher(cls):
+        mag_dict = {}
+        top_mag = None
+        if Article.all: 
+            for article in Article.all:
+                if article.magazine not in mag_dict:
+                    mag_dict[article.magazine] = 1  
+                else:
+                    mag_dict[article.magazine] += 1
+        
+        top_count = 0
+        for magazine, count in mag_dict.items():
+            if count > top_count:
+                top_count = count
+                top_mag = magazine
+                
+                    
+        return top_mag
+        
